@@ -8,7 +8,6 @@ import numpy as np
 import torch
 
 from foundations import paths
-from models import base
 from platforms.platform import get_platform
 
 
@@ -30,7 +29,7 @@ class Mask(dict):
         super(Mask, self).__setitem__(key, value)
 
     @staticmethod
-    def ones_like(model: base.Model) -> 'Mask':
+    def ones_like(model) -> 'Mask':
         mask = Mask()
         for name in model.prunable_layer_names:
             mask[name] = torch.ones(list(model.state_dict()[name].shape))
